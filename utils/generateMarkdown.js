@@ -97,7 +97,7 @@ ${data.testing}
 For additional information, contact me:  
 ${data.name}  
 GitHub: [${data.gitHub}](https://github.com/${data.gitHub}/)  
-e-mail: ${data.email}
+email: ${data.email}
 ${renderLicenseSection(data.license, data.name, data.gitHub)}`
 }
 
