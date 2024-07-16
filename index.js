@@ -1,9 +1,11 @@
 // TODO: Include packages needed for this application
+    // DONE
 const inquirer = require('inquirer')
 const fs = require('fs')
 const mdGen = require('./utils/generateMarkdown.js')
 
 // TODO: Create an array of questions for user input
+    // DONE
 const questions = [
     // This holds the list of prompts inquirer will pull from to generate the README file.
     {
@@ -45,11 +47,17 @@ const questions = [
             'Apache License 2.0',
             'MIT License',
             'Boost Software License 1.0',
+            'none',
         ],
         message: 'Please select a License for your project:',
     },
     {
-        name: 'userName',
+        name: 'name',
+        type: 'input',
+        message: 'Please input your full name (for License purposes):'
+    },
+    {
+        name: 'gitHub',
         type: 'input',
         message: 'Please input your gitHub User Name:',
     },
