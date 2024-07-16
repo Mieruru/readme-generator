@@ -1,13 +1,15 @@
-// TODO: Include packages needed for this application
-    // DONE
+// Packages needed for this application
+
 const inquirer = require('inquirer')
 const fs = require('fs')
-const mdGen = require('./utils/generateMarkdown.js')
+const generateMarkdown = require('./utils/generateMarkdown.js')
 
-// TODO: Create an array of questions for user input
-    // DONE
+// Array of questions for user input
+
 const questions = [
+
     // This holds the list of prompts inquirer will pull from to generate the README file.
+    
     {
         name: 'title',
         type: 'input',
@@ -39,6 +41,9 @@ const questions = [
         message: 'Please enter any relevant testing instructions for you project:',
     },
     {
+
+        // having 'none' as an option at the end is important for part of the license rendering in the generateMarkdown.js
+
         name: 'license',
         type: 'list',
         choices: [
@@ -68,11 +73,26 @@ const questions = [
     },
 ]
 
-// TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
+// Function to write README file
 
-// TODO: Create a function to initialize app
-function init() {}
+function writeToFile(fileName, data) {
+    fs.writeFile(fileName, data, (err) => {
+        err ? console.log(err) :
+        console.log(`Your README file has been generated! Find it under the 'distro' directory in this terminal's location.`)
+    })
+}
+
+// Function to initialize app
+
+function init() {
+    inquirer.prompt(questions)
+    .then((data) => {
+        console.log(data)
+        console.log('Generating README file...')
+        writeToFile('./distro/README.md', generateMarkdown(data))
+    })
+}
 
 // Function call to initialize app
-init();
+
+init()

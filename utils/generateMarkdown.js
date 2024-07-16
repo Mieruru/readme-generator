@@ -1,71 +1,99 @@
-// TODO: Create a function that returns a license badge based on which license is passed in
+// Create a function that returns a license badge based on which license is passed in
 // If there is no license, return an empty string
-  // DONE
+
 function renderLicenseBadge(license) {
   if (license !== 'none') {
-    return `![GitHub License](https://img.shields.io/badge/license-${license}-006400.svg)`
+
+    // Here we set a variable URL address that will be used in the next if statement to attach a link to a badge based on which License we're passing in.
+
+    let url = ''
+
+    if (license === 'GNU GPLv3') {
+      url = 'https://www.gnu.org/licenses/gpl-3.0-standalone.html'
+    } else if (license === 'Mozilla Public License') {
+      url = 'https://www.mozilla.org/en-US/MPL/2.0/'
+    } else if (license === 'Apache License 2.0') {
+      url = 'https://www.apache.org/licenses/LICENSE-2.0'
+    } else if (license === 'MIT License') {
+      url = 'https://opensource.org/license/mit'
+    } else if (license === 'Boost Software License 1.0') {
+      url = 'https://www.boost.org/LICENSE_1_0.txt'
+    }
+
+    // This generates a badge using shields.io's syntax. I made it green because I like green, that's what the hex code at the end is for.
+
+    return `[![GitHub License](https://img.shields.io/badge/license-${license.split(' ').join('_')}-006400.svg)](${url})`
   }
   return ''
 }
 
-// TODO: Create a function that returns the license link
+// Function that returns the license link
 // If there is no license, return an empty string
-  // DONE
+
 function renderLicenseLink(license) {
   if (license !== 'none') {
-    return `\n* [License](#license)`
+    return `* [License](#license)`
   }
   return ''
 }
 
-// TODO: Create a function that returns the license section of README
+// Function that returns the license section of README
 // If there is no license, return an empty string
-  // DONE
-function renderLicenseSection(license) {
+// Here we pass an extra couple values in in addition to the license so that we can call them in for a personalized Copyright line.
+
+function renderLicenseSection(license, name, gitHub) {
   if (license !== 'none') {
-    return `## License
-    
-      ${license} Copyright (c) [yyyy] ${data.name} (${data.gitHub}).
-      For more information, please refer to the LICENSE in the repo if available, or click on the License badge above.`
+
+    // Declaring some quick variables to fetch the date so the README automatically reflects the year that it is generated on.
+
+    let date = new Date()
+    let year = date.getFullYear()
+
+    // Here we need to break format on the code a bit and delete some tabs otherwise it screws up the formatting of the README file's license section.
+
+    return `\n## License
+
+${license} Copyright (c) ${year} ${name} (${gitHub}).  
+For more information, please refer to the LICENSE in the repo if available, or click on the License badge above.`
   }
+  return ''
 }
 
-// TODO: Create a function to generate markdown for README
-  // DONE
+// Function to generate markdown for README
+
 function generateMarkdown(data) {
   return `# ${data.title}
-  ${renderLicenseBadge(data.license)}
+${renderLicenseBadge(data.license)}
 
-  ## Description
-  ${data.description}
+## Description
+${data.description}
 
-  ## Table of Contents
-  * [Installation](#installation)
-  * [Usage](#usage)
-  * [Contributing](#contributing)
-  * [Tests](#tests)
-  * [Questions](#questions)
-  ${renderLicenseLink(data.license)}
+## Table of Contents
+* [Installation](#installation)
+* [Usage](#usage)
+* [Contributing](#contributing)
+* [Tests](#tests)
+* [Questions](#questions)
+${renderLicenseLink(data.license)}
 
-  ## Installation
-  ${data.installation}
+## Installation
+${data.installation}
 
-  ## Usage
-  ${data.usage}
+## Usage
+${data.usage}
 
-  ## Contributing
-  ${data.contribution}
+## Contributing
+${data.contribution}
 
-  ## Testing
-  ${data.testing}
+## Testing
+${data.testing}
 
-  ## Questions
-  Contact me: ${data.name}
-  GitHub: [${data.gitHub}](https://github.com/${data.gitHub}/)
-  e-mail: ${data.email}
-
-  ${renderLicenseSection(data.license)}
-`;
+## Questions
+Contact me: ${data.name}  
+GitHub: [${data.gitHub}](https://github.com/${data.gitHub}/)  
+e-mail: ${data.email}
+${renderLicenseSection(data.license, data.name, data.gitHub)}
+`
 }
 
 module.exports = generateMarkdown;
