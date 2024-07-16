@@ -6,7 +6,9 @@
 
 A lightweight application that allows you to quickly generate a robust README.md file for your project from a professional-grade template.
 
-## Demo
+<!-- ## Demo -->
+
+
 
 ## Dependencies
 
