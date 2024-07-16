@@ -88,12 +88,13 @@ ${data.usage}
 
 ${data.contribution}
 
-## Testing
+## Tests
 
 ${data.testing}
 
 ## Questions
 
+For additional information, contact me:  
 ${data.name}  
 GitHub: [${data.gitHub}](https://github.com/${data.gitHub}/)  
 e-mail: ${data.email}
