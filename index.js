@@ -1,9 +1,18 @@
 // TODO: Include packages needed for this application
 const inquirer = require('inquirer')
-const mdGen = require('./utils/generateMarkdown.js')
+// const mdGen = require('./utils/generateMarkdown.js')
 
 // TODO: Create an array of questions for user input
-const questions = [];
+const questions = [
+    title,
+    description,
+    installation,
+    usage,
+    license,
+    contributing,
+    tests,
+    question,
+];
 
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {}
