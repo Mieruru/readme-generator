@@ -22,7 +22,7 @@ function renderLicenseBadge(license) {
 
     // This generates a badge using shields.io's syntax. I made it green because I like green, that's what the hex code at the end is for.
 
-    return `[![GitHub License](https://img.shields.io/badge/license-${license.split(' ').join('_')}-006400.svg)](${url})`
+    return `\n[![GitHub License](https://img.shields.io/badge/license-${license.split(' ').join('_')}-006400.svg)](${url})\n`
   }
   return ''
 }
@@ -32,7 +32,7 @@ function renderLicenseBadge(license) {
 
 function renderLicenseLink(license) {
   if (license !== 'none') {
-    return `* [License](#license)`
+    return `* [License](#license)\n`
   }
   return ''
 }
@@ -54,7 +54,7 @@ function renderLicenseSection(license, name, gitHub) {
     return `\n## License
 
 ${license} Copyright (c) ${year} ${name} (${gitHub}).  
-For more information, please refer to the LICENSE in the repo if available, or click on the License badge above.`
+For more information, please refer to the LICENSE in the repo if available, or click on the License badge above.\n`
   }
   return ''
 }
@@ -64,36 +64,40 @@ For more information, please refer to the LICENSE in the repo if available, or c
 function generateMarkdown(data) {
   return `# ${data.title}
 ${renderLicenseBadge(data.license)}
-
 ## Description
+
 ${data.description}
 
 ## Table of Contents
+
 * [Installation](#installation)
 * [Usage](#usage)
 * [Contributing](#contributing)
 * [Tests](#tests)
 * [Questions](#questions)
 ${renderLicenseLink(data.license)}
-
 ## Installation
+
 ${data.installation}
 
 ## Usage
+
 ${data.usage}
 
 ## Contributing
+
 ${data.contribution}
 
 ## Testing
+
 ${data.testing}
 
 ## Questions
-Contact me: ${data.name}  
+
+${data.name}  
 GitHub: [${data.gitHub}](https://github.com/${data.gitHub}/)  
 e-mail: ${data.email}
-${renderLicenseSection(data.license, data.name, data.gitHub)}
-`
+${renderLicenseSection(data.license, data.name, data.gitHub)}`
 }
 
 module.exports = generateMarkdown;
